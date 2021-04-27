@@ -19,7 +19,7 @@ from time import *
 starttime = time()
 
 #使用openpyxl读取文件
-wb = openpyxl.load_workbook("allreviews.xlsx")  #填写xlsx文件路径
+wb = openpyxl.load_workbook("allreviews.xlsx")  # 修改1  语料库xlsx文件路径
 ws = wb.active
 lines = []
 
@@ -50,7 +50,7 @@ for each in content:
     seg.append(chinese_word_cut(each))
 
 #加载停用词 hit_stopwords.txt
-with open('hit_stopwords.txt','r',errors='ignore',encoding ='utf-8' ) as stop_fi:
+with open('hit_stopwords.txt','r',errors='ignore',encoding ='utf-8' ) as stop_fi:    #修改2 停用词路径
     lines = stop_fi.readlines()
 
     stopwords = [x.strip() for x in lines]
@@ -87,7 +87,7 @@ def lda(topic,words):
     return (topic,perplexity)
     # print(cv_tmp.get_coherence())
 
-
+#困惑度绘图
 def draw_picture(topic_min,topic_max,words):
     x = []
     y = []
