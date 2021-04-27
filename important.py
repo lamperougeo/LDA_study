@@ -99,15 +99,20 @@ def draw_picture(topic_min,topic_max,words):
     plt.plot(x,y)
     plt.show()
 
-#计算LDA（填写主题数，每个主题下的主题词数）
-lda(5,10)
+    
+    
+
+if __name__=="__main__":
 
 
-#计算困惑度 （填写最小主题数 最大主题数  每个主题下的主题词数）
-draw_picture(5,10,3)
+    #计算LDA（填写主题数，每个主题下的主题词数）
+    lda(5,10)
 
-endtime = time()
-print('该程序共耗时：%"s"',endtime - starttime,)
 
+    #计算困惑度，并绘图 （填写最小主题数 最大主题数  每个主题下的主题词数） 不需要则直接注释掉
+    draw_picture(5,10,3)
+
+    endtime = time()
+    print('该程序共耗时：%s s'%(endtime - starttime))
 
 
