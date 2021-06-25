@@ -1,0 +1,54 @@
+# -*- coding = utf-8 -*-
+
+import pandas as pd
+
+import re
+
+bsdata = pd.read_csv("footmart.csv")
+
+# 构建时间列表
+date = bsdata.the_date
+IPT_dict = {}
+product_set = bsdata.product_id.values
+product_list = set(product_set)
+day_set = set()
+
+# create product_id_month = []
+names = locals()
+for i in product_list:
+    for j in range(1, 13):
+        names["product_" + str(i) + "_" + str(j)] = []
+
+# 获得最大行数
+max_row = len(bsdata)
+print(max_row)
+for i in range(0, max_row):
+    # if product == bsdata.product_id[i]:
+    product = bsdata.product_id[i]
+
+    month = date[i][5:7]
+    day = date[i][8:]
+    # print( product, month ,day)
+    names["product_" + str(product) + "_" + str(int(month))].append(int(day))
+
+    #
+    # {product: {month:day}}
+for i in product_list:
+    for j in range(1, 13):
+        x =  names["product_" + str(i) + "_" + str(j)]
+        try:
+            IPT = (max(x) - min(x) - (len(x)-1))/ (len(x)-1)
+        except:
+            IPT = "无IPT"
+        print("product_" + str(i) + "_" + str(j), names["product_" + str(i) + "_" + str(j)],IPT)
+
+#         day_set.add(int(day))
+# # print(sorted(day_set))
+# day_list = sorted(list(day_set))
+#
+# # print(day_list)
+# IPT = (day_list[-1] - day_list[0]-(len(day_list)-1))/(len(day_list)-1)
+# # print(IPT)
+# IPT_dict[product] = [IPT]
+
+# print(IPT_dict)
